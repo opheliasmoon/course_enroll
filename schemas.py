@@ -32,3 +32,4 @@ class ScheduleCreate(BaseModel):
     StartTime: datetime.time
     EndTime: datetime.time
 
+
