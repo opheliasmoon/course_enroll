@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date, Time
-from sqlalchemy.orm import relationship
 from database import Base
+
 
 class Student(Base):
     __tablename__ = "students"
 
-    StudentID = Column(Integer, primary_key=True)
+    StudentID = Column(Integer, primary_key=True, index=True)
     FirstName = Column(String)
     LastName = Column(String)
     Email = Column(String)
@@ -15,7 +15,7 @@ class Student(Base):
 class Instructor(Base):
     __tablename__ = "instructors"
 
-    InstructorID = Column(Integer, primary_key=True)
+    InstructorID = Column(Integer, primary_key=True, index=True)
     FirstName = Column(String)
     LastName = Column(String)
     Email = Column(String)
@@ -25,7 +25,7 @@ class Instructor(Base):
 class Course(Base):
     __tablename__ = "courses"
 
-    CourseID = Column(Integer, primary_key=True)
+    CourseID = Column(Integer, primary_key=True, index=True)
     CourseName = Column(String)
     Credits = Column(Integer)
     Department = Column(String)
@@ -61,4 +61,3 @@ class Schedule(Base):
     DayOfWeek = Column(String)
     StartTime = Column(Time)
     EndTime = Column(Time)
-
