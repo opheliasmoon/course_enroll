@@ -1,1 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Enroll Student</h2>
+
+<form action="/enrollments/add" method="post">
+    Student ID: <input name="student_id">
+    Course ID: <input name="course_id">
+    <button>Enroll</button>
+</form>
+
+<ul>
+{% for e in enrollments %}
+    <li>Student {{e.StudentID}} → Course {{e.CourseID}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
 
