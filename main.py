@@ -1,26 +1,17 @@
-from fastapi import FastAPI, Depends, Request, Form
-from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from sqlalchemy.orm import Session
-import datetime
-
+from fastapi import FastAPI
+from database import engine
 import models
-from database import engine, SessionLocal
+
+from routers import courses, enrollments, grades, instructors, schedules
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(title="CourseEnroll System")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.include_router(courses.router)
+app.include_router(enrollments.router)
+app.include_router(grades.router)
+app.include_router(instructors.router)
+app.include_router(schedules.router)
 
-templates = Jinja2Templates(directory="templates")
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
